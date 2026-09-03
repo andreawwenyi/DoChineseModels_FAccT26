@@ -16,8 +16,10 @@ pip install -r requirements.txt
 ```sh
 python3 calc_ppl_on_floresp.py --model-name ${model_name} --output-dir ${output_dir} --lang ${lang}
 ```
-`lang`: Flores+ {language code}_{script}. e.g. `ace_Arab`, `eng_Latn`. 
+`lang`: values in the "lang_code_floresp" column of `langs.csv`, e.g. `ace_Arab`, `eng_Latn`. 
 `model_name`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
+
+(#todo: output_dir)
 
 2. Combine individual files from step 1
 ```sh
@@ -30,8 +32,9 @@ python3 combine_floresp_ppl_result.py
 ```sh
 python3 bele_multiple_choice.py --model-path ${model_path} --output-dir ${output_dir} --lang-id ${lang_id}
 ```
-`lang-id`: 
-`model_name`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
+`lang-id`: values in the "lang_code_bele" column of `langs.csv`
+`model_path`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
+(#todo: output_dir)
 
 2. Combine individual files from step 1
 ```sh
@@ -39,7 +42,12 @@ python3 combine_bele_result.py
 ```
 
 ### Experiment 3: 
-[todo]
+```sh
+python3 predict_mc2_languages.py --model-path ${model_path} --output-dir ${output_dir} --lang ${lang}
+```
+`lang`: one of: `kazakh`, `uyghur`, `mongolian`, `tibetan`
+`model_path`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
+(#todo: output_dir)
 
 ### Make figures
 1. Experiment 1 
