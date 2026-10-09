@@ -8,12 +8,13 @@ from utils.ppl import eval_ppl
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--output-dir", type=str, default='./results/')
 parser.add_argument("--input-file", type=str)
 parser.add_argument("--model-name", type=str)
 args = parser.parse_args()
 
 ## make dir
+model_subname=args.model_name.split("/")[-1]
+output_dir = f'./results/floresp_results_v2/dev_${lang}/${model_subname}'
 output_dir = Path(args.output_dir)
 output_dir.mkdir(exist_ok=True, parents=True)
 
