@@ -74,9 +74,9 @@ Rscript plot_bele.R
 Rscript plot_mc2.R
 ```
 
-4. Figure x,y,z [todo]: in `analyze_result.ipynb`
+4. Figure 5, 7, 9: in `analyze_result.ipynb`
 
-5. Figure a,b,c [todo]
+5. Figure 2, 11:
 ```sh
 python pearson_correlation.py
 ```
