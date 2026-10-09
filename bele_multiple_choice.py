@@ -9,14 +9,9 @@ from pathlib import Path
 from prompt_chat_models import load_model
 import argparse
 parser = argparse.ArgumentParser()
-parser.add_argument("--output-dir", type=str, default='./results/')
 parser.add_argument("--lang-id", type=str)
 parser.add_argument("--model-path", type=str)
 args = parser.parse_args()
-
-## make dir
-output_dir = Path(args.output_dir)
-output_dir.mkdir(exist_ok=True, parents=True)
 
 ## read models.csv
 models = pd.read_csv("models.csv")
@@ -29,6 +24,15 @@ if is_instruct_model:
 if not is_instruct_model:
     tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(args.model_path, torch_dtype=torch.float16, device_map="auto", trust_remote_code=True)
+
+# make output_dir
+model_subname=args.model_name.split("/")[-1]
+if is_instruct_model:
+    output_dir = f'./bele_results/{args.lang_id}/{model_subname}_chat_template/answers.jsonl'
+else:
+    output_dir = f"./bele_results/{args.lang_id}/{model_subname}/answers.jsonl"
+output_dir = Path(args.output_dir)
+output_dir.mkdir(exist_ok=True, parents=True)
 
 def make_prompt(obj):
     instruction = "Given the following passage, query, and answer choices, output the letter corresponding to the correct answer."

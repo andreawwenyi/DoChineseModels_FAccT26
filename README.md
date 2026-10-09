@@ -31,9 +31,9 @@ python3 combine_floresp_ppl_result.py
 ```sh
 python3 bele_multiple_choice.py --model-path ${model_path} --lang-id ${lang_id} 
 ```
-`lang-id`: values in the "lang_code_bele" column of `langs.csv`
+
+`lang-id`: values in the "lang_code_bele" column of `langs.csv`, such as "zho_Hans". 
 `model_path`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
-optional: `--output-dir`. Default to `results/`.
 
 2. Combine individual files from step 1
 ```sh
