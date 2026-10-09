@@ -8,13 +8,14 @@ from utils.ppl import eval_ppl
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--input-file", type=str)
-parser.add_argument("--model-name", type=str)
+parser.add_argument("--input_file", type=str)
+parser.add_argument("--lang", type=str)
+parser.add_argument("--model-path", type=str)
 args = parser.parse_args()
 
 ## make dir
-model_subname=args.model_name.split("/")[-1]
-output_dir = f'./results/floresp_results_v2/dev_${lang}/${model_subname}'
+model_subname=args.model_path.split("/")[-1]
+output_dir = f'./results/floresp_results_v2/dev_${args.lang}/${model_subname}'
 output_dir = Path(args.output_dir)
 output_dir.mkdir(exist_ok=True, parents=True)
 
@@ -25,8 +26,8 @@ else:
     device = 'cpu'
 
 ## load model
-tokenizer = AutoTokenizer.from_pretrained(args.model_name, trust_remote_code=True)
-model = AutoModelForCausalLM.from_pretrained(args.model_name, torch_dtype=torch.float16, trust_remote_code=True, device_map=device)
+tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)
+model = AutoModelForCausalLM.from_pretrained(args.model_path, torch_dtype=torch.float16, trust_remote_code=True, device_map=device)
 model.eval()
 
 with open(args.input_file, "r") as f: 

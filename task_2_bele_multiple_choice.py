@@ -10,6 +10,7 @@ from prompt_chat_models import load_model
 import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("--lang-id", type=str)
+parser.add_argument("--input-file", type=str) # e.g. f"./Belebele/{args.lang_id}.jsonl"
 parser.add_argument("--model-path", type=str)
 args = parser.parse_args()
 
@@ -63,7 +64,7 @@ def run_base_model(obj):
     return outputs_decoded
 
 with jsonlines.open(output_dir / "answers.jsonl", "w", flush=True) as writer:
-    with jsonlines.open(f"data/Belebele/{args.lang_id}.jsonl") as reader:
+    with jsonlines.open(args.input_file) as reader:
         for obj in reader:
             zero_shot_answer = prompt_model(obj)
             writer.write({"link": obj["link"],

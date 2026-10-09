@@ -12,12 +12,15 @@ pip install -r requirements.txt
 
 ## Scripts
 ### Experiment 1: Information Parity on the [Flores+](https://huggingface.co/datasets/openlanguagedata/flores_plus) dataset
+0. Download Flores+ dataset
+
 1. Calculate perplexity
 ```sh
-python3 task_1_calc_ppl_on_floresp.py --model-name ${model_name} --lang ${lang}
+python3 task_1_calc_ppl_on_floresp.py --model-path ${model_path} --lang ${lang} --input-file ${input-file}
 ```
 `lang`: values in the "lang_code_floresp" column of `langs.csv`, e.g. `ace_Arab`, `eng_Latn`. 
-`model_name`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
+`input_file`: filepath of the floresp dataset, e.g. `./floresp-v2.0-rc.2/dev/dev.eng_Latn`
+`model_path`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
 optional: `--output-dir`. Default to `results/`
 
 2. Combine individual files from step 1
@@ -27,12 +30,14 @@ python3 combine_task_1_result.py
 
 ### Experiment 2: Zero-shot multiple choice reading comprehension on [Belebele](https://github.com/facebookresearch/belebele) dataset
 
+0. Download Belebele data
 1. Run zero-shot inference
 ```sh
-python3 task_2_bele_multiple_choice.py --model-path ${model_path} --lang-id ${lang_id} 
+python3 task_2_bele_multiple_choice.py --model-path ${model_path} --lang-id ${lang_id} --input-file ${input-file}
 ```
 
 `lang-id`: values in the "lang_code_bele" column of `langs.csv`, such as "zho_Hans". 
+`input-file`: filepath of the Belebele data for that language, e.g. `./Belebele/zho_Hans.jsonl`
 `model_path`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
 
 2. Combine individual files from step 1
