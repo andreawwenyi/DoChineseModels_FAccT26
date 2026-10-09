@@ -13,14 +13,10 @@ import argparse
 from utils.prompt_chat_models import load_model
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--output-dir", type=str, default='./results/')
 parser.add_argument("--lang", type=str, help="one of tibetan, kazakh, uyghur, mongolian")
 parser.add_argument("--model-path", type=str)
 args = parser.parse_args()
 
-## make dir
-output_dir = Path(args.output_dir)
-output_dir.mkdir(exist_ok=True, parents=True)
 
 ## read models.csv
 models = pd.read_csv("models.csv")
@@ -33,6 +29,16 @@ if is_instruct_model:
 if not is_instruct_model:
     tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(args.model_path, torch_dtype=torch.float16, device_map="auto", trust_remote_code=True).eval()
+
+## make dir
+model_subname = args.model_path.split("/")[-1]
+if is_instruct_model:
+    output_dir = f"./mc2_langpred_results/{args.lang}/{model_subname}_chat_template"
+else:
+    output_dir = f"./mc2_langpred_results/{args.lang}/{model_subname}"
+output_dir = Path(args.output_dir)
+output_dir.mkdir(exist_ok=True, parents=True)
+
 
 def make_prompt(text):
     instruction = """

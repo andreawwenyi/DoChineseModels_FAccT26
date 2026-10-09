@@ -46,7 +46,6 @@ python3 predict_mc2_languages.py --model-path ${model_path} --lang ${lang}
 ```
 `lang`: one of: `kazakh`, `uyghur`, `mongolian`, `tibetan`
 `model_path`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
-optional: `--output-dir`. Default to `results/`.
 
 ### Make figures
 1. Experiment 1 
