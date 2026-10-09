@@ -8,7 +8,7 @@ from utils.ppl import eval_ppl
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--output-dir", type=str, default='tmp')
+parser.add_argument("--output-dir", type=str, default='./results/')
 parser.add_argument("--input-file", type=str)
 parser.add_argument("--model-name", type=str)
 args = parser.parse_args()
