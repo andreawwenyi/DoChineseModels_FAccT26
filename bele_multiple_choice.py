@@ -26,7 +26,7 @@ if not is_instruct_model:
     model = AutoModelForCausalLM.from_pretrained(args.model_path, torch_dtype=torch.float16, device_map="auto", trust_remote_code=True)
 
 # make output_dir
-model_subname=args.model_name.split("/")[-1]
+model_subname=args.model_path.split("/")[-1]
 if is_instruct_model:
     output_dir = f'./bele_results/{args.lang_id}/{model_subname}_chat_template/answers.jsonl'
 else:
