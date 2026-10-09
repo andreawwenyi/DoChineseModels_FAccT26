@@ -16,7 +16,7 @@ pip install -r requirements.txt
 
 1. Calculate perplexity
 ```sh
-python3 task_1_calc_ppl_on_floresp.py --model-path ${model_path} --lang ${lang} --input-file ${input-file}
+python3 exp_1_calc_ppl_on_floresp.py --model-path ${model_path} --lang ${lang} --input-file ${input-file}
 ```
 `lang`: values in the "lang_code_floresp" column of `langs.csv`, e.g. `ace_Arab`, `eng_Latn`. 
 `input_file`: filepath of the floresp dataset, e.g. `./floresp-v2.0-rc.2/dev/dev.eng_Latn`
@@ -25,7 +25,7 @@ optional: `--output-dir`. Default to `results/`
 
 2. Combine individual files from step 1
 ```sh
-python3 combine_task_1_result.py
+python3 combine_exp_1_result.py
 ```
 
 ### Experiment 2: Zero-shot multiple choice reading comprehension on [Belebele](https://github.com/facebookresearch/belebele) dataset
@@ -33,7 +33,7 @@ python3 combine_task_1_result.py
 0. Download Belebele data
 1. Run zero-shot inference
 ```sh
-python3 task_2_bele_multiple_choice.py --model-path ${model_path} --lang-id ${lang_id} --input-file ${input-file}
+python3 exp_2_bele_multiple_choice.py --model-path ${model_path} --lang-id ${lang_id} --input-file ${input-file}
 ```
 
 `lang-id`: values in the "lang_code_bele" column of `langs.csv`, such as "zho_Hans". 
@@ -42,20 +42,20 @@ python3 task_2_bele_multiple_choice.py --model-path ${model_path} --lang-id ${la
 
 2. Combine individual files from step 1
 ```sh
-python3 combine_task_2_result.py
+python3 combine_exp_2_result.py
 ```
 
 ### Experiment 3: 
 1. Run language prediction 
 ```sh
-python3 task_3_predict_mc2_languages.py --model-path ${model_path} --lang ${lang}
+python3 exp_3_predict_mc2_languages.py --model-path ${model_path} --lang ${lang}
 ```
 `lang`: one of: `kazakh`, `uyghur`, `mongolian`, `tibetan`
 `model_path`: huggingface model name, e.g. `mistralai/Mistral-7B-v0.3`
 
 2. Combine individual files from step 1
 ```sh
-python3 combine_task_3_results.py
+python3 combine_exp_3_results.py
 ```
 
 ### Make figures
