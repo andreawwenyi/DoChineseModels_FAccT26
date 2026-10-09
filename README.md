@@ -59,6 +59,11 @@ python3 combine_exp_3_results.py
 ```
 
 ### Make figures
+0. create figures directory:
+```sh
+mkdir figures/
+```
+
 1. Experiment 1 
 ```sh
 Rscript plot_floresp.R
